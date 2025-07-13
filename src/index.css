@@ -1,0 +1,23 @@
+/* index.css */
+:root {
+  --radius-xs: 0.5em;
+  --radius-sm: 0.75em;
+  --radius-md: 1em;
+  --radius-lg: 1.5em;
+  --radius-xl: 2em;
+
+  --margin-xxs: 0.25em;
+  --margin-xs: 0.5em;
+  --margin-sm: 0.75em;
+  --margin-md: 1em;
+  --margin-lg: 1.5em;
+  --margin-xl: 2em;
+  
+  --padding-xxs: 0.25em;
+  --padding-xs: 0.5em;
+  --padding-sm: 0.75em;
+  --padding-md: 1em;
+  --padding-lg: 1.5em;
+  --padding-xl: 2em;
+
+}

@@ -1,14 +1,32 @@
-// This api fetches all the card for the all tours page
-export async function fetchTourCards() {
+import { client } from "./strapiClient";
+import {ToursOverviewStructure,ToursOverviewArraySchema} from "../validation/tourOverview"
+
+
+export const fetchToursOverview = async () => {
     try {
-        const response = await fetch('https://api.example.com/tours');
-        if(!response.ok){
-            throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        return data
+        const toursCollection= client.collection('new-tours');
+        const data = await toursCollection.find({
+            populate: {
+                location_information: { fields: ['name', 'sold_out'] },
+                trip_pricing: { fields: ['regular_price'] },
+                trip_dates: { fields: ['start_date', 'end_date'] },
+                location_images: {
+                    populate: {
+                        card_image: { fields: ['url'] }
+                    }
+                }
+            },
+            sort: ['createdAt:desc'],
+        });
+
+        const validatedData = ToursOverviewArraySchema.parse(data);
+        return validatedData;
     } catch (error) {
-        console.log("Error fetching tour cards:", error);
-        throw error; 
+        if (error.name === "ZodError") {
+            console.error("Validation failed for tours overview:", error.errors);
+        }else{
+            console.error("Error fetching tours overview:", error);
+        }
+        throw error;
     }
 }

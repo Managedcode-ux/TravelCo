@@ -10,7 +10,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 const theme = {
   colors: {
-    orange: [
+    primary: [
       "#fff5e0",
       "#ffe9ca",
       "#ffd199",
@@ -23,15 +23,15 @@ const theme = {
       "#b15c00"
     ]
   },
-  primaryColor:'orange',
-  fontFamily:'Outfit, sans-serif',
+  primaryColor: 'orange',
+  fontFamily: 'Outfit, sans-serif',
   spacing: {
     xs: '8px',
     sm: '12px',
     md: '16px',
     lg: '24px',
     xl: '32px',
-  }
+  },
 }
 
 
@@ -42,5 +42,5 @@ createRoot(document.getElementById('root')).render(
         <App />
       </BrowserRouter>
     </MantineProvider>
-  </StrictMode>,
+  </StrictMode>
 )
