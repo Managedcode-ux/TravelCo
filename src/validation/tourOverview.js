@@ -1,10 +1,12 @@
 import { z } from 'zod'
 
-export const ToursOverviewStructure = z.object({
+export const ToursOverviewStructure = z.looseObject({
     id: z.number(),
+    documentId:z.string(),
     location_information: z.object({
         name: z.string(),
-        sold_out: z.boolean()
+        sold_out: z.boolean(),
+        type:z.string()
     }),
     location_images: z.object({
         card_image: z.object({
