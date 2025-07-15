@@ -10,7 +10,8 @@ export const ToursOverviewStructure = z.looseObject({
     }),
     location_images: z.object({
         card_image: z.object({
-            url: z.string()
+            url: z.string(),
+            formats:z.looseObject()
         })
     }),
     trip_pricing: z.object({
