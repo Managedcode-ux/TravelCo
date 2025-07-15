@@ -1,7 +1,8 @@
-.mainContainer{
+.allToursPageContainer{
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    overflow-y: auto;
 }
 .locationCardsContainer{
     display: flex;
@@ -12,10 +13,18 @@
 }
 
 .categorySelector{
-    margin-top: 1rem;
+    /* margin-top: 1rem;
     align-self: center;
     overflow-x: auto;
-    padding: 4px;
+    padding: 4px; */
     /* outline: salmon 2px solid; */
     max-width: 90vw;
+
+    margin-top: 1rem;
+    align-self: center;
+    width: fit-content;
+    overflow-x: auto;
+    padding: 4px;
+    margin-left: var(--margin-xs);
+    margin-right: var(--margin-xs);
 }

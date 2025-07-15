@@ -6,13 +6,20 @@ export const fetchToursOverview = async () => {
     try {
         const toursCollection = client.collection('new-tours');
         const data = await toursCollection.find({
+            // filters: {
+            //     location_information: {
+            //         type: {
+            //             $eq: 'International'
+            //         }
+            //     }
+            // },
             populate: {
-                location_information: { fields: ['name', 'sold_out','type'] },
+                location_information: { fields: ['name', 'sold_out', 'type'] },
                 trip_pricing: { fields: ['regular_price'] },
                 trip_dates: { fields: ['start_date', 'end_date'] },
                 location_images: {
                     populate: {
-                        card_image: { fields: ['url'] }
+                        card_image: { fields: ['url','formats'] }
                     }
                 }
             },
@@ -42,8 +49,8 @@ export const fetchTourDetails = async (tourId) => {
                 location_information: '*',
                 trip_pricing: '*',
                 trip_dates: '*',
-                trip_itenary:"*",
-                inclusion_exclusion:"*",
+                trip_itenary: "*",
+                inclusion_exclusion: "*",
                 location_images: {
                     populate: {
                         all_images: { fields: ['url'] }
