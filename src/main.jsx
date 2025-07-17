@@ -4,6 +4,7 @@ import './index.css'
 import App from './App.jsx'
 
 import '@mantine/core/styles.css';
+import '@mantine/carousel/styles.css';
 import { MantineProvider } from '@mantine/core';
 
 import { BrowserRouter } from 'react-router-dom';
@@ -24,7 +25,7 @@ const theme = {
     ]
   },
   primaryColor: 'orange',
-  fontFamily: 'Outfit, sans-serif',
+  fontFamily: 'Open-sans',
   spacing: {
     xs: '8px',
     sm: '12px',

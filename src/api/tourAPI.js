@@ -1,18 +1,12 @@
 import { client } from "./strapiClient";
 import { ToursOverviewStructure, ToursOverviewArraySchema } from "../validation/tourOverview"
+import {TourDetailsStructure,TourDetailSchema} from '../validation/tourDetails'
 
 // Fetches the tour details in brief which are only required to render the tour card 
 export const fetchToursOverview = async () => {
     try {
         const toursCollection = client.collection('new-tours');
         const data = await toursCollection.find({
-            // filters: {
-            //     location_information: {
-            //         type: {
-            //             $eq: 'International'
-            //         }
-            //     }
-            // },
             populate: {
                 location_information: { fields: ['name', 'sold_out', 'type'] },
                 trip_pricing: { fields: ['regular_price'] },
@@ -23,7 +17,7 @@ export const fetchToursOverview = async () => {
                     }
                 }
             },
-            sort: ['createdAt:desc'], // sorting the result in descending to get the latest post that was added
+            sort: ['createdAt:desc'], // sorting the result in descending to get the latest post that was added first
         });
         // console.log("Invalidated Data", data)
         const validatedData = ToursOverviewArraySchema.parse(data);
@@ -58,9 +52,15 @@ export const fetchTourDetails = async (tourId) => {
                 }
             }
         })
-        return data
+        console.log("INVALIDATED DATA ==>",data)
+        const validatedDetailsData = TourDetailSchema.parse(data)
+        return validatedDetailsData
     } catch (error) {
-        console.log("Error fetching tour details:", error);
+        if(error.name === 'ZodError'){
+            console.error("Validation failed fot tour details: ", error.error)
+        }else{
+            console.log("Error fetching tour details:", error);
+        }
         throw error;
     }
 }
