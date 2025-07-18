@@ -19,7 +19,7 @@ export const fetchToursOverview = async () => {
             },
             sort: ['createdAt:desc'], // sorting the result in descending to get the latest post that was added first
         });
-        // console.log("Invalidated Data", data)
+        // console.log("Invalidated Data", data) 
         const validatedData = ToursOverviewArraySchema.parse(data);
         return validatedData;
     } catch (error) {
@@ -52,7 +52,6 @@ export const fetchTourDetails = async (tourId) => {
                 }
             }
         })
-        console.log("INVALIDATED DATA ==>",data)
         const validatedDetailsData = TourDetailSchema.parse(data)
         return validatedDetailsData
     } catch (error) {

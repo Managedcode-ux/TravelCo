@@ -1,0 +1,166 @@
+/* MOBILE DESIGNS  */
+
+
+.detailsPageContainer {
+    /* background-color: var(--mantine-color-primary-0); */
+    background-color: #f1efee;
+    overflow-y: scroll;
+}
+
+.headerImageCarouselandNameContainer {
+    /* border: rebeccapurple 2px solid; */
+    border-radius: var(--radius-sm);
+    border-bottom: 5px solid var(--mantine-color-primary-6);
+}
+
+.headerImageCarouselandNameContainer .locationName {
+    /* position:absolute; */
+    margin: var(--margin-md) var(--margin-xs);
+    font-size: 1.44rem;
+    text-align: center;
+    text-wrap: balance;
+    /* font-weight: 800; */
+}
+
+.sectionHeading {
+    text-decoration: underline;
+    width: 100%;
+    text-align: center;
+    background-color: var(--mantine-color-primary-4);
+    border-radius: var(--margin-xs);
+    color: black
+}
+
+p {
+    margin: var(--margin-xs) 0;
+}
+
+ul {
+    padding-left: var(--padding-lg);
+}
+
+
+/* Price Container Styles Start */
+
+/* .priceContainer {
+    outline: red solid 2px;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: var(--margin-md);
+} */
+
+.priceContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    justify-items: center;
+    /* margin-top: var(--margin-md); */
+    margin-bottom: var(--margin-lg);
+    margin-left: var(--margin-lg);
+    margin-right: var(--margin-lg);
+
+}
+
+.priceSectionHeading {
+    grid-column: 1 / 3;
+    text-decoration: underline;
+    margin-bottom: 0px;
+    width: 100%;
+    text-align: center;
+    background-color: var(--mantine-color-primary-4);
+    border-radius: var(--margin-xs);
+}
+
+.priceBox {
+    /* outline: blueviolet dashed 2px; */
+    text-align: center;
+    position: relative;
+    /* margin: var(--margin-sm) 0px; */
+}
+
+.reserveSlotTooltip {
+    /* outline: red solid 1px; */
+    position: absolute;
+    top: 1.1rem;
+    right: -0.9rem;
+    border: 2px solid black;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+}
+
+.tooltipText {
+    display: none;
+    position: absolute;
+    background: white;
+    top: -24px;
+    right: 11px;
+    text-align: center;
+    opacity: 1;
+    border-radius: 5px;
+    text-wrap: balance;
+}
+
+.priceBox>h3 {
+    margin: var(--margin-sm) var(--margin-sm);
+    margin-bottom: var(--margin-xs);
+}
+
+.amountTextContainer {
+    border: 2px solid black;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+}
+
+.amountTextContainer>h6 {
+    font-size: 1.2rem;
+    margin: var(--margin-xs) var(--margin-xs);
+}
+
+.moneySign {
+    margin-left: 0.25rem;
+}
+
+/* Price Container Styles End */
+
+
+
+/* Style for tour Info section start here */
+
+.tripInfoContainer {
+    margin: 0px var(--margin-lg);
+    text-wrap: wrap;
+}
+
+/* Tour Overview start*/
+
+.overviewContainer {}
+
+/* Tour Overview end*/
+
+/* Itenary Start */
+.dailyItenaryContainer {}
+
+/* Itenary End */
+
+/* Highlights start*/
+.highlightsContainer {}
+
+/* Highlights end*/
+
+/* Inclusion start */
+.inclusionContainer {}
+
+/* Inclusion end */
+
+/* Exclusion Start */
+.exclusionContainer {}
+
+/* Exclusion End */
+
+
+/* Additional Info start*/
+.additionalInformation {}
+
+/* Additional Info end*/

@@ -30,17 +30,6 @@ function ToursPage() {
         fetchTours()
     }, [])
 
-    //This useEffect shall fire when either the variants or the filters are changed or applied respectively
-    // useEffect(() => {
-    //     const fetchUpdatedTours = async() => {
-    //         try {
-    //             const newTourData
-    //         } catch (error) {
-    //             console.log(error)
-    //         }
-    //     }
-    // },[selectedVariant])
-
     useEffect(() => {
         function applyFiltersAndVariants() {
             const tripsArray = allToursData.data
@@ -51,7 +40,6 @@ function ToursPage() {
                     return true
                 }
             })
-            console.log("FILTERED_DATA ==>", filteredtripsArray)
             return filteredtripsArray;
         }
 
@@ -88,8 +76,8 @@ function ToursPage() {
                 {filteredData.data.map(tour => {
                     const locationCardProps = {
                         id: tour.documentId,
-                        imageURL: import.meta.env.VITE_serverURL + tour.location_images.card_image.formats.small.url, /*Concatinating the image url with the server prefix e.g http://localhost:1337 */
-                        // imageURL: import.meta.env.VITE_serverURL + tour.location_images.card_image.url, /*Concatinating the image url with the server prefix e.g http://localhost:1337 */
+                        /*Concatinating the image url with the server prefix e.g http://localhost:1337 */
+                        imageURL: import.meta.env.VITE_serverURL + tour.location_images.card_image.formats.small.url, 
                         name: tour.location_information.name,
                         status: tour.location_information.sold_out,
                         startDate: tour.trip_dates.start_date,

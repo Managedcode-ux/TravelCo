@@ -1,3 +1,5 @@
+// This function gets us all the different types of tags a trip can be (Domestic,International,Weekend etc)
+
 export function getAllTripVariants(data) {
     const variantSet = new Set()
     const dataArray = data.data
