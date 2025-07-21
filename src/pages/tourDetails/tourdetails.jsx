@@ -7,19 +7,28 @@ import { useRef } from 'react'
 import { BlocksRenderer } from '@strapi/blocks-react-renderer'
 import Itenary from '../../components/tripItenary/Itenary'
 import { Carousel } from '@mantine/carousel'
-import { Image } from '@mantine/core'
+import { Image,Button } from '@mantine/core'
 import Autoplay from 'embla-carousel-autoplay'
 import { useMemo } from 'react'
 import { customEmblaCarouselOptions } from './tourDetailsUtils'
 import FAQ from '../../components/Questions/faq'
-import { fetchFAQ } from "../../api/faqAPI";
+import { fetchFAQ_API, fetchDisclaimer_API, saftey_API, fetchCancellationAndRefund_API } from "../../api/singleTypeAPI";
+import Disclaimer from '../../components/disclaimer/disclaimer'
+import SafteyText from '../../components/saftey/saftey'
+import CancellationAndRefund from '../../components/refundAndCancellationComponent/cancellationAndRefundComponent'
+import ContactUsCard from '../../components/contact_us/contactUs'
 
 
 function TourDetails() {
     const { id } = useParams();
     const [tourInformation, setTourInformation] = useState();
     const [faqs, setFaqs] = useState()
+    const [disclaimer, setDisclaimer] = useState()
+    const [saftey, setSaftey] = useState()
+    const [cancellationAndRefundstate, setCancellationAndRefundState] = useState()
+
     const [reserverSlotTooltip, setreserverSlotTooltip] = useState(false)
+    const [contactUsCardShow, setcontactUsCardShow] = useState(false) //This state is used to check if contact us card is visible or not
     const autoplay = useRef(Autoplay({ delay: 4000 }))
 
     useEffect(() => {
@@ -35,16 +44,46 @@ function TourDetails() {
 
         const fetchFAQs = async () => {
             try {
-                const faqs = await fetchFAQ();
-                setFaqs(faqs)
+                const faqsObj = await fetchFAQ_API();
+                setFaqs(faqsObj)
             } catch (error) {
                 console.log("Rendering the FAQ's failed due to: ", error)
             }
         }
-        
+
+        const fetchDisclaimer = async () => {
+            try {
+                const disclaimerObj = await fetchDisclaimer_API();
+                setDisclaimer(disclaimerObj)
+            } catch (error) {
+                console.log("Rendering the disclaimer failed due to: ", error)
+            }
+        }
+
+        const fetchSafteyText = async () => {
+            try {
+                const safteyObj = await saftey_API();
+                setSaftey(safteyObj)
+            } catch (error) {
+                console.log("Rendering the disclaimer failed due to: ", error)
+            }
+        }
+
+        const fetchCancellationAndRefund = async () => {
+            try {
+                const canAndRef = await fetchCancellationAndRefund_API();
+                setCancellationAndRefundState(canAndRef)
+            } catch (error) {
+                console.log("Rendering cancellation and refund policy failed due to: ", error)
+            }
+        }
+
         fetchDetails();
         fetchFAQs()
-    }, [])
+        fetchDisclaimer();
+        fetchSafteyText();
+        fetchCancellationAndRefund();
+    }, [id])
 
     const flattenedTourInformation = useMemo(() => {
         if (!tourInformation) return null
@@ -66,10 +105,23 @@ function TourDetails() {
         setreserverSlotTooltip(prevState => !prevState)
     }
 
+    const handleContactUsClick = () => {
+        setcontactUsCardShow(prevState => !prevState)
+    }
+
+    //This function is used to untoggle any item which showup on click. 
+    const unToggle = () =>{
+        if(reserverSlotTooltip){
+            setreserverSlotTooltip(false)
+        }
+        if(contactUsCardShow){
+            setcontactUsCardShow(false)
+        }
+    }
 
 
     return (
-        <div className={classes.detailsPageContainer}>
+        <div className={classes.detailsPageContainer} onClick={unToggle}>
             {/* image carousel*/}
             <div className={classes.headerImageCarouselandNameContainer}>
                 <Carousel
@@ -89,6 +141,16 @@ function TourDetails() {
                     ))}
                 </Carousel>
                 <h4 className={classes.locationName}>{flattenedTourInformation && flattenedTourInformation.name}</h4>
+            </div>
+
+            {/* Contact Us Card */}
+            <div className={classes.contactUsCardContainer}>
+                    <ContactUsCard toggle={contactUsCardShow}/>
+            </div>
+            
+            {/* Contact Us Button */}
+            <div className={classes.contactUsBtnContainer} onClick={handleContactUsClick}>
+                    <Button fullWidth variant="filled" color="primary.6" size="lg" radius="sm" >Contact-Us</Button>
             </div>
 
             {/* Price and Booking section */}
@@ -180,9 +242,31 @@ function TourDetails() {
 
             </div>
 
+            <hr className={classes.lineBreak} />
+
             <div className={classes.faqContainer}>
                 <FAQ data={faqs} />
             </div>
+
+            <hr className={classes.lineBreak} />
+
+            <div className={classes.disclaimerContainer}>
+                <Disclaimer data={disclaimer} />
+            </div>
+
+            <hr className={classes.lineBreak} />
+
+            <div className={classes.safteyTextContainer}>
+                <SafteyText text={saftey} />
+            </div>
+
+            <hr className={classes.lineBreak} />
+
+            <div className={classes.cancellationAndRefundContainer}>
+                <CancellationAndRefund text={cancellationAndRefundstate}/>
+            </div>
+
+
         </div>
     )
 }

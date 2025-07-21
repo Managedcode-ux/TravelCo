@@ -8,6 +8,7 @@ export default function App() {
   return (
     <div className='rootContainer'>
       <Routes>
+        <Route path='/' element={}/>
         <Route path='/allTours' element={<ToursPage />} />
         <Route path='/tour/:id' element={<TourDetails />} />
       </Routes>

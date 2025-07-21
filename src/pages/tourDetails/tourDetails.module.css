@@ -4,7 +4,8 @@
 .detailsPageContainer {
     /* background-color: var(--mantine-color-primary-0); */
     background-color: #f1efee;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
+    position: relative
 }
 
 .headerImageCarouselandNameContainer {
@@ -15,6 +16,8 @@
 
 .headerImageCarouselandNameContainer .locationName {
     /* position:absolute; */
+    font-family: 'Edu NSW ACT Hand Pre';
+    font-weight: 500;
     margin: var(--margin-md) var(--margin-xs);
     font-size: 1.44rem;
     text-align: center;
@@ -28,17 +31,51 @@
     text-align: center;
     background-color: var(--mantine-color-primary-4);
     border-radius: var(--margin-xs);
-    color: black
+    color: black;
 }
 
+/* contact us button styles */
+.contactUsBtnContainer {
+    position: fixed;
+    bottom: 0;
+    /* Always pinned to bottom of viewport */
+    left: 0;
+    width: 100%;
+    /* Stretch across the full width */
+    text-align: center;
+    z-index: 1000;    /*Make sure it sits above other content*/
+
+
+}
+
+/* Contact us card */
+.contactUsCardContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    z-index: 1;
+    border-radius: var(--radius-md);
+    border: 2px solid whitesmoke;
+    background-color: white;
+}
+
+/* reset the margin provided by default by mantine */
 p {
     margin: var(--margin-xs) 0;
 }
 
+/* reset the unordered list padding provided by default by mantine */
 ul {
     padding-left: var(--padding-lg);
 }
 
+.lineBreak {
+    height: 0.25rem;
+    background-color: var(--mantine-color-primary-6);
+    color: var(--mantine-color-primary-6);
+}
 
 /* Price Container Styles Start */
 
@@ -108,9 +145,10 @@ ul {
 }
 
 .amountTextContainer {
-    border: 2px solid black;
+    /* border: 2px solid black; */
     border-radius: var(--radius-md);
     font-weight: 700;
+    display: inline-block;
 }
 
 .amountTextContainer>h6 {
@@ -161,6 +199,37 @@ ul {
 
 
 /* Additional Info start*/
-.additionalInformation {}
+.additionalInformation {
+    margin-bottom: 3.5rem;
+}
 
 /* Additional Info end*/
+
+
+.faqContainer {
+    /* outline: rebeccapurple solid 2px; */
+    text-wrap: wrap;
+    margin-left: var(--margin-lg);
+    margin-right: var(--margin-lg);
+}
+
+.disclaimerContainer {
+    margin-top: var(--margin-xl);
+    margin-left: var(--margin-lg);
+    margin-right: var(--margin-lg);
+    margin-bottom: var(--margin-xxl);
+}
+
+.safteyTextContainer {
+    margin-top: var(--margin-xl);
+    margin-left: var(--margin-lg);
+    margin-right: var(--margin-lg);
+    margin-bottom: var(--margin-xxl);
+}
+
+.cancellationAndRefundContainer {
+    margin-top: var(--margin-xl);
+    margin-left: var(--margin-lg);
+    margin-right: var(--margin-lg);
+    margin-bottom: calc(var(--margin-xxl) + 0.5em);
+}

@@ -1,0 +1,11 @@
+.contactCard{
+    /* display flex is set as inline style in the jsx */
+    flex-direction: column;
+    min-width: 304px;
+    align-items: center;
+    padding: var(--padding-md) var(--margin-lg);
+}
+
+.contactItem{
+    margin: var(--margin-md) var(--margin-md)
+}
